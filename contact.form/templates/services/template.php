@@ -9,7 +9,7 @@ $this->createFrame()->begin("Загрузка");
     </div>
 <? } else { ?>
     <div id="services-form">
-        <form action="<?= $_SERVER["REQUEST_URI"] ?>" method="post">
+        <form action="<?= $_SERVER["REQUEST_URI"] ?>" method="post" onsubmit="sendTarget('services');return true;">
             <div class="bordered">
                 <input name="product" placeholder="Продукция для сертификации *" required>
                 <input name="name" placeholder="Имя / название компании * " required>

@@ -8,7 +8,7 @@ $this->createFrame()->begin("Загрузка");
         <?= $arParams['SUCCESS_MESSAGE'] ?>
     </div>
 <? } else { ?>
-    <form action="<?= $_SERVER["REQUEST_URI"] ?>" method="post">
+    <form action="<?= $_SERVER["REQUEST_URI"] ?>" method="post" onsubmit="sendTarget('kontakty');return true;">
         <div class="bordered">
             <input type="tel" name="form_fields[PHONE]" placeholder="ТЕЛЕФОН*" required>
             <input type="email" name="form_fields[EMAIL]" placeholder="EMAIL">

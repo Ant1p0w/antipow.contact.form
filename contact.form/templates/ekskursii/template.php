@@ -10,7 +10,7 @@ $this->createFrame()->begin("Загрузка");
 <? } else { ?>
     <div class="default-contact-form">
         <h2 class="mb-5"><?= getMessage("FORM_TITLE"); ?></h2>
-        <form action="<?= $_SERVER["REQUEST_URI"] ?>" method="post">
+        <form action="<?= $_SERVER["REQUEST_URI"] ?>" method="post" onsubmit="sendTarget('ekskursii');return true;">
             <div class="bordered">
                 <input type="text" name="form_fields[NAME]" placeholder="ИМЯ / НАЗВАНИЕ КОМПАНИИ*" required>
                 <input type="tel" name="form_fields[PHONE]" placeholder="ТЕЛЕФОН*" required>
