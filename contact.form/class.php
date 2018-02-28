@@ -206,4 +206,18 @@ class CAntipowContactForm extends CBitrixComponent
         return $result->isSuccess();
     }
 
+    public function saveToBD($arFields, $IBLOCK_ID)
+    {
+        $el = new CIBlockElement;
+        $arLoadProductArray = Array(
+            "IBLOCK_SECTION_ID" => false,
+            "IBLOCK_ID"         => $IBLOCK_ID,
+            "NAME"              => $arFields['SUBJECT'],
+            "ACTIVE"            => "Y",
+            "DETAIL_TEXT"       => $arFields['MESSAGE'],
+            "PREVIEW_TEXT"      => $arFields['UTM'],
+        );
+        $el->Add($arLoadProductArray);
+    }
+
 }

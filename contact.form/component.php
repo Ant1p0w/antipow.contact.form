@@ -27,6 +27,11 @@ if ($_REQUEST['AJAX_CALL'] == "Y")
         $arResult['SEND_MAIL'] = $this->sendEmail($arParams['EVENT_NAME'], SITE_ID, $this->message);
     }
 
+    if ($arParams['SAVE_TO_BD'] == 'Y' && intval($arParams['IBLOCK_ID']) > 0)
+    {
+        $this->SaveToBD($this->message, $arParams['IBLOCK_ID']);
+    }
+
 }
 
 $this->IncludeComponentTemplate();
