@@ -14,6 +14,7 @@ class CAntipowContactForm extends CBitrixComponent
     private $arUtm = array();
     private $arUtmCookie;
     private $arUtmSession;
+    private $file_id = array();
     public $message;
 
     public function utmGetSave()
@@ -202,7 +203,7 @@ class CAntipowContactForm extends CBitrixComponent
 
     public function sendEmail($EVENT_NAME, $LID, $MESSAGE)
     {
-        $result = Event::send(array("EVENT_NAME" => $EVENT_NAME, "LID" => $LID, "C_FIELDS" => $MESSAGE));
+        $result = Event::send(array("EVENT_NAME" => $EVENT_NAME, "LID" => $LID, "C_FIELDS" => $MESSAGE, 'FILE' => $this->file_id));
         return $result->isSuccess();
     }
 
@@ -218,6 +219,17 @@ class CAntipowContactForm extends CBitrixComponent
             "PREVIEW_TEXT"      => $arFields['UTM'],
         );
         $el->Add($arLoadProductArray);
+    }
+
+    public function saveFile($_FILE)
+    {
+        if (!empty($_FILE))
+        {
+            foreach ($_FILE as $file)
+            {
+                $this->file_id[] = CFile::SaveFile($file, "from_forms");
+            }
+        }
     }
 
 }

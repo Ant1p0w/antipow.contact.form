@@ -3,6 +3,11 @@ $arUtm = $this->utmGetSave();
 
 if ($_REQUEST['AJAX_CALL'] == "Y")
 {
+    $ajaxSession = CAjax::GetSession();
+    if($ajaxSession && $arParams["AJAX_ID"] != $ajaxSession)
+    {
+        return;
+    }
 
     if (!empty($arParams['REQUIRED_FIELDS']))
     {
@@ -23,6 +28,7 @@ if ($_REQUEST['AJAX_CALL'] == "Y")
     {
         $this->prepareMessage($_REQUEST['form_fields'], 'MESSAGE');
         $this->prepareMessage($arUtm, 'UTM');
+        $this->saveFile($_FILES);
         $this->message['SUBJECT'] = $arParams['SUBJECT'] . ": " . date("d.m.y h:i:s");
         $arResult['SEND_MAIL'] = $this->sendEmail($arParams['EVENT_NAME'], SITE_ID, $this->message);
     }
