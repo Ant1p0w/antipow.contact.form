@@ -1,7 +1,22 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 $arUtm = $this->utmGetSave();
 
-if ($_REQUEST['AJAX_CALL'] == "Y")
+use Bitrix\Main\Application;
+
+$arUtm = $this->utmGetSave();
+$request = Application::getInstance()->getContext()->getRequest();
+
+if ($request->isPost())
+{
+    $arRequest = $request->getPostList();
+}
+else
+{
+    $arRequest = $request->getQueryList();
+}
+
+
+if ($arRequest['AJAX_CALL'] == "Y" && check_bitrix_sessid())
 {
     $ajaxSession = CAjax::GetSession();
     if($ajaxSession && $arParams["AJAX_ID"] != $ajaxSession)
