@@ -19,7 +19,7 @@ else
 if ($arRequest['AJAX_CALL'] == "Y" && check_bitrix_sessid())
 {
     $ajaxSession = CAjax::GetSession();
-    if($ajaxSession && $arParams["AJAX_ID"] != $ajaxSession)
+    if (empty($ajaxSession) || $arParams["AJAX_ID"] != $ajaxSession)
     {
         return;
     }
